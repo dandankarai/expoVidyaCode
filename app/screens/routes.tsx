@@ -1,13 +1,11 @@
 import React from 'react';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Feather } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import Requests from './Requests/Requests';
 import Products from './Products/Products';
 import Customers from './Customer/Customer';
 
-import RegisterClient from './Customer/RegisterClient';
 
 const Tab = createBottomTabNavigator();
 export function Routes() {

@@ -15,6 +15,7 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 import SearchInput from '../../components/SearchInput/SearchInput';
 import { useController, useForm } from 'react-hook-form';
 import { ScrollViewContainer, ContentInputs, ContentInputText, InputForm, ButtonSafe, ButtonSafeText } from './styles/RegisterClient';
+import GenericPressable from '../../components/PressableSafe/PressableSafe';
 
 function RegisterClient(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -88,9 +89,7 @@ function RegisterClient(): React.JSX.Element {
         <Input name='Número' control={control} />
       </ContentInputs>
 
-      <ButtonSafe onPress={handleSubmit(onSubmit)}>
-        <ButtonSafeText>Cadastrar cliente</ButtonSafeText>
-      </ButtonSafe>
+      <GenericPressable onPress={handleSubmit(onSubmit)} text='Cadastrar cliente' />
     </ScrollViewContainer>
   );
 }

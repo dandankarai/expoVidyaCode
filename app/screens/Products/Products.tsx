@@ -5,13 +5,19 @@ import {
   useColorScheme,
   View,
   Text,
+  Pressable,
 } from 'react-native';
 
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import SearchInput from '../../components/SearchInput/SearchInput';
 
-function Products(): React.JSX.Element {
+function Products({ navigation }): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
+
+  const navigateToNewProduct = () => {
+    console.log('clicou')
+    navigation.navigate('NewProduct')
+  }
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -24,6 +30,9 @@ function Products(): React.JSX.Element {
         backgroundColor={backgroundStyle.backgroundColor}
       />
       <SearchInput />
+      <Pressable onPress={navigateToNewProduct}>
+        <Text>Cadastrar Produto</Text>
+      </Pressable>
     </SafeAreaView>
   );
 }
