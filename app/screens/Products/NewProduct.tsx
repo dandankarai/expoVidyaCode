@@ -100,7 +100,7 @@ function NewProduct(): React.JSX.Element {
       {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
 
 
-      <GenericPressable onPress={() => alert('clicou é gay')} text='Salvar' />
+      <GenericPressable onPress={() => alert('clicou')} text='Salvar' />
 
     </ScrollViewContainer>
   );
