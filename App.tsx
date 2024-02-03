@@ -8,6 +8,7 @@ import { Routes } from './app/screens/routes';
 import { createStackNavigator } from '@react-navigation/stack';
 import RegisterClient from './app/screens/Customer/RegisterClient';
 import NewProduct from './app/screens/Products/NewProduct';
+import { NewRequest } from './app/screens/Requests/NewRequest';
 
 const Stack = createStackNavigator()
 
@@ -33,6 +34,15 @@ function App(): React.JSX.Element {
             }}
             name='NewProduct'
             component={NewProduct} />
+
+          <Stack.Screen
+            options={{
+              headerBackTitleVisible: false,
+              headerTitle: 'Cadastro de pedidos'
+            }}
+            name='NewRequest'
+            component={NewRequest}
+          />
         </Stack.Navigator>
       </Provider>
     </NavigationContainer>
