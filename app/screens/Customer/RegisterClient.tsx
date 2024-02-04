@@ -1,28 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  SafeAreaView,
-  StatusBar,
   useColorScheme,
-  View,
-  Text,
-  Pressable,
-  TextInput,
-  ScrollView,
-  KeyboardAvoidingView
+  Alert
 } from 'react-native';
-
-import { Colors } from 'react-native/Libraries/NewAppScreen';
-import SearchInput from '../../components/SearchInput/SearchInput';
+import uuid from 'react-native-uuid';
 import { useController, useForm } from 'react-hook-form';
 import { ScrollViewContainer, ContentInputs, ContentInputText, InputForm, ButtonSafe, ButtonSafeText } from './styles/RegisterClient';
 import GenericPressable from '../../components/PressableSafe/PressableSafe';
+import { useDispatch, useSelector } from 'react-redux';
+import { setName, setCnpj, setCellphone, setCep, setState, setCity, setNeighborhood, setAddress, setHouseNumber } from '../../redux/Reducer/clienteReducer';
+import { getRealm } from '../../databases/realm';
+import { useNavigation } from '@react-navigation/core';
 
-function RegisterClient(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+interface formDataProps {
+  name: string,
+  cnpj: string,
+  cellphone: string,
+  cep: string,
+  state: string,
+  city: string,
+  neighborhood: string,
+  address: string,
+  houseNumber: string
+}
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+function RegisterClient() {
+  const [isLoading, setIsLoading] = useState(false)
+  const { control, handleSubmit } = useForm()
+  const dispatch = useDispatch()
+
+  const navigation = useNavigation()
+  function handleBack() {
+    navigation.goBack()
+  }
 
   const Input = ({ name, control }) => {
     const { field } = useController({
@@ -30,63 +40,91 @@ function RegisterClient(): React.JSX.Element {
       defaultValue: '',
       name
     })
+
+    const onChangeText = (text) => {
+      field.onChange(text)
+    };
+
+
     return (
       <InputForm
-        value={field.value} onChangeText={field.onChange} />
+        value={field.value} onChangeText={onChangeText} />
     )
   }
 
-  const { control, handleSubmit } = useForm()
-  const onSubmit = (data) => {
-    console.log(data)
+  const onSubmit = async (formData: formDataProps) => {
+    console.log('formData:', formData);
+    const realm = await getRealm()
+
+    try {
+      setIsLoading(true)
+
+      realm.write(() => {
+        const xpto = realm.create('Clients', {
+          ...formData
+        });
+        console.log('create', xpto)
+      })
+
+      Alert.alert('Cliente cadastrado com sucesso!')
+      realm.close()
+      handleBack()
+
+    } catch (error) {
+      console.log(error)
+      Alert.alert('Ocorreu um erro ao cadastrar um novo cliente!')
+
+    } finally {
+      realm.close()
+      setIsLoading(false)
+    }
   }
   return (
-    // < SafeAreaView style={backgroundStyle} >
     <ScrollViewContainer>
 
       <ContentInputs>
-        <ContentInputText>Name</ContentInputText>
-        <Input name='Nome' control={control} />
+        <ContentInputText>Nome</ContentInputText>
+        <Input name='name' control={control} />
       </ContentInputs>
 
       <ContentInputs>
         <ContentInputText>CNPJ</ContentInputText>
-        <Input name='CNPJ' control={control} />
+        <Input name='cnpj' control={control} />
       </ContentInputs>
 
       <ContentInputs>
         <ContentInputText>Telefone</ContentInputText>
-        <Input name='Telefone' control={control} />
+        <Input name='cellphone' control={control} />
       </ContentInputs>
 
       <ContentInputs>
         <ContentInputText>CEP</ContentInputText>
-        <Input name='CEP' control={control} />
+        <Input name='cep' control={control} />
       </ContentInputs>
 
       <ContentInputs>
         <ContentInputText>Estado</ContentInputText>
-        <Input name='Estado' control={control} />
+        <Input name='state' control={control} />
       </ContentInputs>
 
       <ContentInputs>
         <ContentInputText>Cidade</ContentInputText>
-        <Input name='Cidade' control={control} />
+        <Input name='city' control={control} />
       </ContentInputs>
 
       <ContentInputs>
         <ContentInputText>Bairro</ContentInputText>
-        <Input name='Bairro' control={control} />
+        <Input name='neighborhood' control={control} />
       </ContentInputs>
 
       <ContentInputs>
         <ContentInputText>Endereço</ContentInputText>
-        <Input name='Endereço' control={control} />
+        <Input name='address' control={control} />
       </ContentInputs>
 
       <ContentInputs>
         <ContentInputText>Número</ContentInputText>
-        <Input name='Número' control={control} />
+        <Input name='houseNumber' control={control} />
       </ContentInputs>
 
       <GenericPressable onPress={handleSubmit(onSubmit)} text='Cadastrar cliente' />
