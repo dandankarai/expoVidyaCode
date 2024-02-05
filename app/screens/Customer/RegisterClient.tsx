@@ -27,7 +27,6 @@ interface formDataProps {
 function RegisterClient() {
   const [isLoading, setIsLoading] = useState(false)
   const { control, handleSubmit } = useForm()
-  const dispatch = useDispatch()
 
   const navigation = useNavigation()
   function handleBack() {

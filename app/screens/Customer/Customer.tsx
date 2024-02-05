@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import {
   SafeAreaView,
   StatusBar,
@@ -6,15 +6,37 @@ import {
   View,
   Text,
   Pressable,
+  Alert,
 } from 'react-native';
 
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import SearchInput from '../../components/SearchInput/SearchInput';
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { getRealm } from '../../databases/realm';
 
-function Customers({ navigation }): React.JSX.Element {
+function Customers({ navigation }) {
   const isDarkMode = useColorScheme() === 'dark';
+  const [clients, setClients] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
 
+  async function fectClients() {
+    setIsLoading(true)
+    const realm = await getRealm()
+
+    try {
+      const clients = realm.objects('Clients').toJSON()
+      setClients(clients)
+      console.log(clients)
+
+    } catch (error) {
+      console.log(error);
+      Alert.alert('Não foi possivel carregar a lista de clientes')
+
+    } finally {
+      realm.close()
+      setIsLoading(false)
+    }
+  }
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
@@ -22,6 +44,10 @@ function Customers({ navigation }): React.JSX.Element {
   const navigateToNewClientScreen = () => {
     navigation.navigate('Register')
   }
+
+  useFocusEffect(useCallback(() => {
+    fectClients();
+  }, []));
 
   return (
     <SafeAreaView style={backgroundStyle}>
