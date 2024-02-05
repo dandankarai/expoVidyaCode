@@ -29,6 +29,7 @@ function RegisterClient() {
   const { control, handleSubmit } = useForm()
 
   const navigation = useNavigation()
+
   function handleBack() {
     navigation.goBack()
   }
@@ -74,6 +75,7 @@ function RegisterClient() {
       Alert.alert('Ocorreu um erro ao cadastrar um novo cliente!')
 
     } finally {
+      console.log('caiu aqui no finally')
       realm.close()
       setIsLoading(false)
     }

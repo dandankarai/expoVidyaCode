@@ -30,7 +30,7 @@ function Customers({ navigation }) {
     try {
       const clients = realm.objects("Clients").toJSON();
       setClients(clients);
-      console.log(clients);
+      console.log('clientes',clients);
     } catch (error) {
       console.log(error);
       Alert.alert("Não foi possivel carregar a lista de clientes");
@@ -58,13 +58,13 @@ function Customers({ navigation }) {
   // );
 
   return (
-    <Container style={backgroundStyle}>
+    <Container>
       <StatusBar
         barStyle={isDarkMode ? "light-content" : "dark-content"}
         backgroundColor={backgroundStyle.backgroundColor}
       />
 
-      <View>
+      {/* <View> */}
       <SearchInput />
       <GenericPressable onPress={navigateToNewClientScreen} text='Cadastrar cliente' />
         <FlatList
@@ -72,7 +72,7 @@ function Customers({ navigation }) {
           keyExtractor={(item) => item.name}
           renderItem={({ item }) => <Client data={item} />}
         />
-      </View>
+      {/* </View> */}
     </Container>
   );
 }

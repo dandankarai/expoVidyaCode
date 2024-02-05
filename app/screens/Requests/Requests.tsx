@@ -20,14 +20,14 @@ function Requests({ navigation }): React.JSX.Element {
     console.log(data)
   }
   return (
-    <SafeAreaView style={backgroundStyle}>
+    <Container style={backgroundStyle}>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
       <SearchInput onSearch={onSearch} />
-      <GenericPressable onPress={navigateToNewRequest} text='Cadastrar novo produto' />
-    </SafeAreaView>
+      <GenericPressable onPress={navigateToNewRequest} text='Cadastrar Pedido' />
+    </Container>
   );
 }
 

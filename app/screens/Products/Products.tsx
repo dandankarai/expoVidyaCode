@@ -3,24 +3,14 @@ import {
   SafeAreaView,
   StatusBar,
   useColorScheme,
-  View,
   Text,
-  Pressable,
-  Alert,
-  Image,
-  TouchableOpacity,
   FlatList,
-  TextInput,
 } from "react-native";
 
 import { Colors } from "react-native/Libraries/NewAppScreen";
-// import { FlatList } from "react-native-gesture-handler";
-import { getRealm } from "../../databases/realm";
-import { useFocusEffect } from "@react-navigation/core";
 import GenericPressable from "../../components/PressableSafe/PressableSafe";
 import {
   ContainerCard,
-  ContainerImage,
   ContainerTouch,
   SearchInput
 } from "./styles/Products";
@@ -31,6 +21,7 @@ function Products() {
   const isDarkMode = useColorScheme() === "dark";
   const navigation = useNavigation();
   const [searchTerm, setSearchTerm] = useState("");
+
   const navigateToNewProduct = () => {
     navigation.navigate("NewProduct");
   };
@@ -105,11 +96,7 @@ function Products() {
          onChangeText={(text) => setSearchTerm(text)}
          value={searchTerm}
        />
-{/* 
-      <SearchInput
-        value={searchTerm}
-        onChangeText={(text) => setSearchTerm(text)}
-      /> */}
+
       <GenericPressable
         onPress={navigateToNewProduct}
         text="Cadastrar Produto"
