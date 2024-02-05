@@ -14,6 +14,7 @@ import SearchInput from '../../components/SearchInput/SearchInput';
 import { FlatList } from 'react-native-gesture-handler';
 import { getRealm } from '../../databases/realm';
 import { useFocusEffect } from '@react-navigation/core';
+import GenericPressable from '../../components/PressableSafe/PressableSafe';
 
 function Products({ navigation }) {
   const isDarkMode = useColorScheme() === 'dark';
@@ -36,9 +37,7 @@ function Products({ navigation }) {
         backgroundColor={backgroundStyle.backgroundColor}
       />
       <SearchInput />
-      <Pressable onPress={navigateToNewProduct}>
-        <Text>Cadastrar Produto</Text>
-      </Pressable>
+      <GenericPressable onPress={navigateToNewProduct} text='Cadastrar Produto' />
     </SafeAreaView>
   );
 }

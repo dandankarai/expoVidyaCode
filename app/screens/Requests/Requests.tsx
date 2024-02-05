@@ -26,9 +26,7 @@ function Requests({ navigation }): React.JSX.Element {
         backgroundColor={backgroundStyle.backgroundColor}
       />
       <SearchInput onSearch={onSearch} />
-      <GenericPressable onPress={navigateToNewRequest} text='Cadastrar novo cliente' />
-      <Container>
-      </Container>
+      <GenericPressable onPress={navigateToNewRequest} text='Cadastrar novo produto' />
     </SafeAreaView>
   );
 }

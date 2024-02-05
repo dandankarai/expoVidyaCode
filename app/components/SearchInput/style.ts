@@ -1,13 +1,8 @@
 import styled from "styled-components/native";
 
 export const Container = styled.View`
-  flex: 1;
-  justify-content: "center";
-  align-items: "center";
   margin: 10px;
-  margin-bottom: 80px;
-  flex-direction: "row";
-`;
+  `;
 
 export const InputContent = styled.TextInput`
   flex: 1;
@@ -16,16 +11,14 @@ export const InputContent = styled.TextInput`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  color: black;
+  padding-left: 16px;
 `;
 
 export const Content = styled.View`
   display: flex;
   flex-direction: "row";
-  /* justify-content: "center"; */
-  /* align-items: "center"; */
-  background-color: "#fff";
   border-width: 0.5px;
-  border-color: "#000";
+  border-radius: 24px;
   height: 40px;
-  margin: 10px;
 `;

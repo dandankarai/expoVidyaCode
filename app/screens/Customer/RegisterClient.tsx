@@ -59,10 +59,10 @@ function RegisterClient() {
       setIsLoading(true)
 
       realm.write(() => {
-        const xpto = realm.create('Clients', {
+        realm.create('Clients', {
           ...formData
         });
-        console.log('create', xpto)
+        
       })
 
       Alert.alert('Cliente cadastrado com sucesso!')

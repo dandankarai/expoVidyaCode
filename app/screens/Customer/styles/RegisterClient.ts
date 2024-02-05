@@ -23,7 +23,6 @@ export const InputForm = styled.TextInput`
   height: 48px;
   border-radius: 12px;
   border: 1px;
-  border-color: "#C5C6CC";
   margin-bottom: 12px;
   padding-left: 12px;
 `;

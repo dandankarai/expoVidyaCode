@@ -1,14 +1,5 @@
 import React, { useState } from 'react';
-import {
-  View,
-  TextInput,
-  TouchableOpacity,
-  StyleSheet,
-  Text,
-  TouchableWithoutFeedback
-} from 'react-native';
 import { Container, InputContent, Content } from './style';
-import { FontAwesome5 } from '@expo/vector-icons';
 const SearchInput = ({ onSearch }: any) => {
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -19,9 +10,8 @@ const SearchInput = ({ onSearch }: any) => {
   return (
     <Container>
       <Content>
-        <FontAwesome5 name="search" size={24} color="black" />
         <InputContent
-          placeholder="Digite sua busca..."
+          placeholder="Pesquisar"
           value={searchTerm}
           onChangeText={setSearchTerm}
           onSubmitEditing={handleSearch}
