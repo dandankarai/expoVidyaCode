@@ -10,6 +10,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import RegisterClient from './app/screens/Customer/RegisterClient';
 import NewProduct from './app/screens/Products/NewProduct';
 import { NewRequest } from './app/screens/Requests/NewRequest';
+import { DetalhesProduto } from './app/screens/Products/DetailsProducts';
 const Stack = createStackNavigator()
 
 function App() {
@@ -43,6 +44,12 @@ function App() {
             name='NewRequest'
             component={NewRequest}
           />
+          <Stack.Screen
+          name="DetalhesProduto"
+          
+          component={DetalhesProduto}
+          options={{ headerShadowVisible:false, headerTitle:'' }}
+        />
         </Stack.Navigator>
       </Provider>
     </NavigationContainer>

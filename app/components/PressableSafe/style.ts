@@ -5,7 +5,7 @@ export const ButtonSafe = styled.Pressable`
   height: 48px;
   border: 1px solid;
   border-radius: 12px;
-  margin-bottom: 120px;
+  margin-bottom: 10px;
   /* margin-top: 42px; */
   justify-content: center;
   align-items: center;
