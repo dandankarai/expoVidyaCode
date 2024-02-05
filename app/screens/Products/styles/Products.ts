@@ -19,3 +19,10 @@ export const ContainerTouch = styled.TouchableOpacity`
   margin: 20px;
   background-color: #F8F9FE;
 `;
+
+export const SearchInput = styled.TextInput`
+  width: 300px;
+  height: 48px;
+  border-radius: 8px;
+  padding-left: 10px;
+`;

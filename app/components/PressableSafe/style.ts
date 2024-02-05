@@ -10,7 +10,7 @@ export const ButtonSafe = styled.Pressable`
   justify-content: center;
   align-items: center;
   background-color: blue;
-  margin-left: 22px;
+  /* margin-left: 22px; */
 `;
 
 export const ButtonSafeText = styled.Text`
