@@ -3,7 +3,7 @@ import { Pressable, SafeAreaView, StatusBar, useColorScheme } from 'react-native
 
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import SearchInput from '../../components/SearchInput/SearchInput';
-import { Container } from './style';
+import { Container } from './styles/Request';
 import GenericPressable from '../../components/PressableSafe/PressableSafe';
 
 function Requests({ navigation }): React.JSX.Element {
